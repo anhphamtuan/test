@@ -1,0 +1,19 @@
+#!/bin/bash
+
+
+key_folder=${HOME}/ssh-key/privatekey/
+if [ "$(ls $key_folder | grep $1)" == '' ]; then 
+	echo "There no key similar to $1 in $key_folder"
+else
+	param=$(echo $1|awk '{print tolower($0)}') 
+
+	if [ "$(echo $param|grep 'may')" == '' ]; then
+		key="MAY$1"
+		ip=$1
+	else
+		key=$1
+		ip=$(echo $param|sed 's|may||')
+	fi
+	ssh -i $key_folder/$key root@192.168.1.$ip
+	[ ! $? ]&&{ ssh -i $key_folder/$key root@192.168.4.$ip; }
+fi

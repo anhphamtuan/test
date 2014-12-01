@@ -8,7 +8,7 @@ jenkins) host='192.168.3.35';;
 sun) host='192.168.5.10';;
 proxima) host='192.168.5.11';;
 test) host='192.168.3.80';;
-*) if [ ${#$1} -le 3 ]; then
+*) if [ ${#1} -le 3 ]; then
         host="192.168.3.$1"
    else 
 	host=$1

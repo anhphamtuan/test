@@ -6,3 +6,5 @@
 clear
 
 echo "too early now"
+
+echo $(date)
